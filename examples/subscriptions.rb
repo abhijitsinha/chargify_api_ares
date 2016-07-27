@@ -78,7 +78,7 @@ subscription = Subscription.find_by_customer_reference('moklett')
 customer = subscription.customer
 
 # payment detail
-credit_card = subscription.credit_card.id
+credit_card = subscription.credit_card
 
 # using the existing details - create a new subscription for another product.
 Chargify::Subscription.create(:customer_id => customer.id, :product_handle => 'another_product', 
