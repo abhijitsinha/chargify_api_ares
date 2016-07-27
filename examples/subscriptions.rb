@@ -68,3 +68,18 @@ subscription.product_change('new-handle', true)
 
 # Cancel a delayed product change
 subscription.cancel_delayed_product_change
+
+# Multiple Subscriptions
+
+# find the subscription from the customer reference
+subscription = Subscription.find_by_customer_reference('moklett')
+
+# customer from subscription 
+customer = subscription.customer
+
+# payment detail
+credit_card = subscription.credit_card.id
+
+# using the existing details - create a new subscription for another product.
+Chargify::Subscription.create(:customer_id => customer.id, :product_handle => 'another_product', 
+  :payment_profile_id => credit_card.id)
